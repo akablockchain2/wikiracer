@@ -46,7 +46,7 @@ def find_path(source_url: str, target_url: str) -> Optional[list]:
         return [source_url]
 
     queue = deque([[source_url]])
-    visited = set([source_url])
+    visited = {source_url}
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         while queue:
