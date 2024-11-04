@@ -26,14 +26,14 @@ Wikiracer is a command-line tool that finds the shortest path between two Wikipe
 ## Usage
 The tool accepts two arguments: the `source` page and the `target` page. Use the CLI as follows:
 ```bash
-wikiracer "Python_(programming_language)" "Java_virtual_machine"
+wikiracer "https://en.wikipedia.org/wiki/Python_(programming_language)" "https://en.wikipedia.org/wiki/Java_virtual_machine"
 ```
 
 ### Example Output
 If a path is found between the source and target pages, the output will look like this:  
-Python_(programming_language) -> Computer_science -> Artificial_intelligence  
+https://en.wikipedia.org/wiki/Python_(programming_language) -> https://en.wikipedia.org/wiki/Computer_science -> https://en.wikipedia.org/wiki/Artificial_intelligence  
 If no path is found, the output will be:  
-No path found from Python_(programming_language) to Artificial_intelligence.
+No path found from https://en.wikipedia.org/wiki/Python_(programming_language) to https://en.wikipedia.org/wiki/Artificial_intelligence.
 
 ### Command-line Arguments
 - `source` - The starting Wikipedia page. It should be the exact page name used in the URL (e.g., Python_(programming_language)).
@@ -41,8 +41,8 @@ No path found from Python_(programming_language) to Artificial_intelligence.
 
 ### Additional Examples
 ```bash
-wikiracer "Albert_Einstein" "Theory_of_relativity"  
-wikiracer "New_York_City" "Central_Park"
+wikiracer "https://en.wikipedia.org/wiki/Albert_Einstein" "https://en.wikipedia.org/wiki/Theory_of_relativity"  
+wikiracer "https://en.wikipedia.org/wiki/New_York_City" "https://en.wikipedia.org/wiki/Central_Park"
 ```
 
 ## Project Structure
