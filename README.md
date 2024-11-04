@@ -19,13 +19,15 @@ Wikiracer is a command-line tool that finds the shortest path between two Wikipe
     source .venv/bin/activate
    ```
 3. Install the dependencies:  
-   `pip install -r requirements.txt`
+   `pip3 install -r requirements.txt`
 4. Install the project in editable mode:  
-   `pip install -e .`
+   `pip3 install -e .`
 
 ## Usage
 The tool accepts two arguments: the `source` page and the `target` page. Use the CLI as follows:
-wikiracer "Python_(programming_language)" "Artificial_intelligence"
+```bash
+wikiracer "Python_(programming_language)" "Java_virtual_machine"
+```
 
 ### Example Output
 If a path is found between the source and target pages, the output will look like this:  
@@ -38,8 +40,10 @@ No path found from Python_(programming_language) to Artificial_intelligence.
 - `target` - The target Wikipedia page you want to reach.
 
 ### Additional Examples
+```bash
 wikiracer "Albert_Einstein" "Theory_of_relativity"  
 wikiracer "New_York_City" "Central_Park"
+```
 
 ## Project Structure
 The project structure is as follows:

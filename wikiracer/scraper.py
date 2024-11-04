@@ -1,21 +1,16 @@
-# wikiracer/scraper.py
-
 import requests
 from bs4 import BeautifulSoup
 from collections import deque
+from typing import Optional
 
-WIKI_URL = "https://en.wikipedia.org"
-
-
-def extract_links(wiki_page: str) -> list:
+def extract_links(wiki_page_url: str) -> list:
     """
-    Extracts all the valid internal Wikipedia links from a given page.
+    Extracts all the valid internal Wikipedia links from a given page URL.
     """
-    url = f"{WIKI_URL}/wiki/{wiki_page}"
-    response = requests.get(url)
+    response = requests.get(wiki_page_url)
 
     if response.status_code != 200:
-        raise Exception(f"Failed to retrieve page: {wiki_page}")
+        raise Exception(f"Failed to retrieve page: {wiki_page_url}")
 
     soup = BeautifulSoup(response.content, 'html.parser')
     links = []
@@ -23,26 +18,26 @@ def extract_links(wiki_page: str) -> list:
     for link in soup.find_all('a', href=True):
         href = link.get('href')
         if href.startswith('/wiki/') and not href.startswith('/wiki/Special:') and ':' not in href:
-            links.append(href.split("/wiki/")[-1])
+            links.append(f"https://en.wikipedia.org{href}")
 
     return links
 
 
-def find_path(source: str, target: str) -> list:
+def find_path(source_url: str, target_url: str) -> Optional[list]:
     """
     Finds the shortest path from source to target Wikipedia page using BFS.
 
     Arguments:
-    source -- Starting Wikipedia page
-    target -- Target Wikipedia page
+    source_url -- Starting Wikipedia page URL
+    target_url -- Target Wikipedia page URL
 
     Returns:
-    List of pages representing the path from source to target, or None if no path found.
+    List of URLs representing the path from source to target, or None if no path found.
     """
-    if source == target:
-        return [source]
+    if source_url == target_url:
+        return [source_url]
 
-    queue = deque([[source]])
+    queue = deque([[source_url]])
     visited = set()
 
     while queue:
@@ -60,7 +55,7 @@ def find_path(source: str, target: str) -> list:
                 new_path = list(path)
                 new_path.append(link)
 
-                if link == target:
+                if link == target_url:
                     return new_path
 
                 visited.add(link)
