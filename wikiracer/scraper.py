@@ -12,10 +12,7 @@ def extract_links(wiki_page_url: str) -> list:
     Extracts all the valid internal Wikipedia links from a given page URL.
     """
     try:
-        print("wiki_page_url")
-        print(wiki_page_url)
         response = requests.get(wiki_page_url)
-        print(response.status_code)
 
         if response.status_code != 200:
             raise Exception(f"Failed to retrieve page: {wiki_page_url}")
